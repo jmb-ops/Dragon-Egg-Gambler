@@ -42,18 +42,22 @@ or deals death.'''
         print('tap! tap!!')
         print('A loud crack echoes as the egg breaks open.')
         if 'armor' in loot:
+            loot.remove('armor')
             print('The dragon’s fire slams into your armor '
             '— it chars, and breaks, but saves your life.')
             main()
         elif 'Ember Eater Amulet (magic)' in loot:
+            loot.remove('Ember Eater Amulet (magic)')
             print('Your Ember Eater Amulet drinks the flames '
             'greedily, then crumbles to ash. You survive.')
             main()
         elif 'Fire Quenched Stone (magic)' in loot:
+            loot.remove('Fire Quenched Stone (magic)')
             print('Your Fire Quenched Stone cracks apart as it '
             'drinks the heat meant for you. You survive.')
             main()
         elif 'Half Melted Knight Helmet' in loot:
+            loot.remove('Half Melted Knight Helmet')
             print('It’s ugly, it’s warped, but the knight’s '
             'helmet blocks the blast one last time. You survive.')
             main()
