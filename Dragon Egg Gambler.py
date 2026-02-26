@@ -107,15 +107,22 @@ def main():
             egg_tap()
         elif player == 'c':
             #write score to disk
-            with open('highscore.txt', 'w') as f:
-                save_name = input('enter name for '
-                'highscore: ')
-                print(f'{save_name} escapes with {gold} '
-                    f'gold and {len(loot)} looted items: {loot}')
-                saved = (save_name, 'gold=',gold, ' loot=', len(loot),
-                loot)
-                f.write(str(saved))
-            end_game()
+            try:
+                with open('highscore.txt', 'w', encoding="utf-8") as f:
+                    save_name = input('enter name for '
+                    'highscore: ')
+                    print(f'{save_name} escapes with {gold} '
+                        f'gold and {len(loot)} looted items: {loot}')
+                    saved = (save_name, 'gold=',gold, ' loot=', len(loot),
+                    loot)
+                    f.write(str(saved))
+                end_game()
+            except:
+                print('cannot save game at this time. womp.')
+                user = input('exit? y/n: ')
+                if user == 'y':
+                    exit()
+                exit()
         elif player == 'i':
             print(f'Player 1 score: gold = {gold} '
             f'loot = {len(loot)}{loot}')
