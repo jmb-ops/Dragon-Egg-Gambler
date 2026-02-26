@@ -118,7 +118,9 @@ def main():
                     f.write(str(saved))
                 end_game()
             except:
-                print('cannot save game at this time. womp.')
+                print('cannot save game at this time.')
+                print('running from the command line will fix'
+                      ' the issue.')
                 user = input('exit? y/n: ')
                 if user == 'y':
                     exit()
@@ -136,7 +138,9 @@ def main():
         elif player == '?':
             print('(press i for score & highscore'
                   ' to see the highscore, t to tap'
-                ' the egg, c to cash out, q to quit.')
+                ' the egg, c to cash out, q to quit.\n'
+                  'post your high score at r/DragonEggGambler\n'
+                  'or just say hi and make some friends!)')
         print('[T]ap egg or [C]ash out')
         player = input('Player 1: ')
     exit()
