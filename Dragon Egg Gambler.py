@@ -2,6 +2,7 @@
 '''
 import random
 #game items.
+i = 0
 gold = 0
 loot = []
 items = ['armor', 'pearls', 'diamonds',
@@ -17,6 +18,7 @@ def end_game():
     '''this function is intended to ask the player
     to play again or end the game loop.'''
     global loot
+    global gold
     player_choice = input('Play Again? y/n: ')
     while player_choice != 'y' or player_choice != 'n':
         if player_choice == 'y':
@@ -25,6 +27,8 @@ def end_game():
               'one... A massive egg resting atop a glittering '
               'hoard. \nEvery tap risks waking what guards it.'
               '\npress ? for more info.')
+            #reset player stats 
+            gold = 0
             loot = []
             main()
         elif player_choice == 'n':
@@ -39,6 +43,9 @@ or deals death.'''
     global gold
     global loot
     global items
+    global i
+    #this should incriment for the first 3 uses
+    
 
     tap_egg = random.choice(['gold', 'loot', 'lose', 'gold', 'gold'])
     if tap_egg == 'gold':
@@ -54,7 +61,15 @@ or deals death.'''
         print(f'You found + {item}!')
         loot.append(item)
     elif tap_egg == 'lose':
-        #triggers game loss.
+        #triggers game loss. Also, players should not die on the first
+        #play, ideally not until they at least have a chance to get 1
+        #loot item.
+        i += 1
+        while i <= 1:
+            loot.append('armor')
+            print('tap! tap!!')
+            print(f'You found + armor!')
+            main()
         print('tap! tap!!')
         print('A loud crack echoes as the egg breaks open.')
         if 'armor' in loot:
