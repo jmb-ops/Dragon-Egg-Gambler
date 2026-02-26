@@ -18,16 +18,18 @@ def end_game():
     to play again or end the game loop.'''
     global loot
     player_choice = input('Play Again? y/n: ')
-    if player_choice == 'y':
-        print('Dragon nests are rare, dangerous, and '
-          'overflowing with treasure. \nYou’ve found '
-          'one... A massive egg resting atop a glittering '
-          'hoard. \nEvery tap risks waking what guards it.'
-          '\npress ? for more info.')
-        loot = []
-        main()
-    elif player_choice == 'n':
-        exit()
+    while player_choice != 'y' or player_choice != 'n':
+        if player_choice == 'y':
+            print('Dragon nests are rare, dangerous, and '
+              'overflowing with treasure. \nYou’ve found '
+              'one... A massive egg resting atop a glittering '
+              'hoard. \nEvery tap risks waking what guards it.'
+              '\npress ? for more info.')
+            loot = []
+            main()
+        elif player_choice == 'n':
+            exit()
+        player_choice = input('Play Again? y/n: ')
 
 def egg_tap():
     '''this function needs to provide the randomness for which
@@ -38,7 +40,7 @@ or deals death.'''
     global loot
     global items
 
-    tap_egg = random.choice(['gold', 'loot', 'lose'])
+    tap_egg = random.choice(['gold', 'loot', 'lose', 'gold', 'gold'])
     if tap_egg == 'gold':
         #awards gold
         amt = random.randrange(1, 13)
@@ -81,7 +83,8 @@ or deals death.'''
             end_game()
     
 def main():
-    #this is the main game loop.
+    '''this is the main game loop.
+'''
     print('[T]ap egg or [C]ash out')
     player = input('Player 1: ')
     while player != 'q':
@@ -102,9 +105,12 @@ def main():
             print(f'Player 1 score: gold = {gold} '
             f'loot = {len(loot)}{loot}')
         elif player == 'highscore':
-            with open('highscore.txt', 'r') as f:
-                data = f.read()
-            print(data)
+            try:
+                with open('highscore.txt', 'r') as f:
+                    data = f.read()
+                print(data)
+            except:
+                print('No highscore found!')
         elif player == '?':
             print('(press i for score & highscore'
                   ' to see the highscore, t to tap'
